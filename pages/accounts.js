@@ -13,7 +13,7 @@ const Users = ({ users }) => {
 
 export default Users;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // This is a real endpoint
   const res = await fetch("https://sampleapis.com/fakebank/api/Accounts");
   const usersData = await res.json();
@@ -21,7 +21,8 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      users: users
+      users: users,
+      revalidate: 5
     }
   };
 }
